@@ -11,8 +11,10 @@ export const getUserById = async (id: string) => {
 };
 
 export const createUser = async (attrs: CreateUserAttrs) => {
-    const id = genId();
-    await client.hSet(usersKey(id), serialize(attrs));
+    const id = genId(); // generates a unique id
+    await client.hSet(usersKey(id), serialize(attrs)); // sets hash with key of users key from services/keys>
+    // calls serialize on attrs which does nothing extra, but is extensible and strongly typed
+    // returns the id
     return id;
 };
 
